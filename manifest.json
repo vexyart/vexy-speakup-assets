@@ -110,6 +110,22 @@
             "sha256": "8c8eadc2ca5e3969fadfc393070802f187c1c92a22a6260230bb55baede4d591",
             "size": 11293522
           }
+        ],
+        "windows-x64": [
+          {
+            "path": "plugins/vocal-gate/1.0.5/windows-x64/VocalGate_Windows_Installer.exe",
+            "bundle": "Vocal Gate.vst3",
+            "sha256": "1126158ed3758842554dcfda295e1b3779b859387b8eeffad59ada632eabd76c",
+            "size": 31330154,
+            "installer": "inno",
+            "args": [
+              "/VERYSILENT",
+              "/SUPPRESSMSGBOXES",
+              "/NORESTART",
+              "/SP-"
+            ],
+            "installs_to": "common-vst3"
+          }
         ]
       }
     }

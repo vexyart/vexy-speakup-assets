@@ -17,7 +17,15 @@ the linked repository and release.
 | podcast-plugins | PodcastPlugins TRACK, MASTER | 1.0.0 | yes | yes | GPL-3.0 |
 | master_me | master_me | 1.3.1 | yes | yes | GPL-3.0 |
 | noise-repellent | Noise Repellent | 0.4.1 | yes | yes | GPL-3.0 |
-| vocal-gate | Vocal Gate | 1.0.5 | yes | no (Inno Setup 6.7 installer only) | GPL-3.0 |
+| vocal-gate | Vocal Gate | 1.0.5 | yes | official installer | GPL-3.0 |
+
+Vocal Gate for Windows ships only as an Inno Setup 6.7 installer, which current
+extraction tools cannot unpack. It is stored unmodified as
+`plugins/vocal-gate/1.0.5/windows-x64/VocalGate_Windows_Installer.exe`. On
+Windows, `vexy-speakup assets fetch` runs it silently (`/VERYSILENT
+/SUPPRESSMSGBOXES /NORESTART /SP-`). It asks for administrator rights (UAC),
+installs `C:\Program Files\Common Files\VST3\Vocal Gate.vst3` and the VC++
+runtime, and is uninstalled from Windows Settings > Apps.
 
 Not included: `dereverb-vst3` has no licence, so it cannot be redistributed.
 
@@ -38,7 +46,7 @@ Not included: `dereverb-vst3` has no licence, so it cannot be redistributed.
 ```
 manifest.json                                   # ids, versions, sha256, sizes
 plugins/<id>/LICENSE
-plugins/<id>/<version>/<macos|windows-x64>/<Bundle>.vst3.zip
+plugins/<id>/<version>/<macos|windows-x64>/<Bundle>.vst3.zip   # or a vendor installer .exe
 plugins/<id>/<version>/source/<id>-<version>-src.tar.xz
 tools/manifest.py                               # regenerate manifest.json
 ```
