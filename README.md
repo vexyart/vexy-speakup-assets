@@ -21,12 +21,25 @@ the linked repository and release.
 
 Not included: `dereverb-vst3` has no licence, so it cannot be redistributed.
 
+## Source code (GPL-3.0)
+
+`plugins/<id>/<version>/source/` holds the complete source for each binary:
+
+- PodcastPlugins and master_me: the upstream `-src.tar.xz` release archives
+  (DPF and submodules included).
+- Noise Repellent 0.4.1 (commit 34c80ce): the tagged tree plus the sources its
+  CMake build fetches, under `deps/`: JUCE 8.0.15, libspecbleach v0.4.1 and
+  FreeType VER-2-13-2.
+- Vocal Gate 1.0.5 (commit 7393d65): the tagged tree (including its vendored
+  ONNX Runtime) plus JUCE 8.0.12 under `deps/`.
+
 ## Layout
 
 ```
 manifest.json                                   # ids, versions, sha256, sizes
 plugins/<id>/LICENSE
 plugins/<id>/<version>/<macos|windows-x64>/<Bundle>.vst3.zip
+plugins/<id>/<version>/source/<id>-<version>-src.tar.xz
 tools/manifest.py                               # regenerate manifest.json
 ```
 
@@ -35,7 +48,8 @@ macOS bundles are universal, ad hoc signed, and load in pedalboard 0.9.26.
 ## Adding a release
 
 1. Extract the `.vst3` bundle from the official release (`.dmg`/`.pkg`: mount or
-   `pkgutil --expand-full`; Windows `.zip`: unzip).
+   `pkgutil --expand-full`; Windows `.zip`: unzip). A Windows single-file `.vst3` DLL is zipped at the archive root.
 2. `ditto -c -k --keepParent Bundle.vst3 plugins/<id>/<version>/<platform>/Bundle.vst3.zip`
-3. Add the project to `SOURCES` in `tools/manifest.py`, run it, commit.
-4. In vexy-speakup, update `ASSETS_REVISION` and the copied `assets_manifest.json`.
+3. Add the complete corresponding source under `source/`.
+4. Add the project to `SOURCES` in `tools/manifest.py`, run it, commit.
+5. In vexy-speakup, update `ASSETS_REVISION` and the copied `assets_manifest.json`.
